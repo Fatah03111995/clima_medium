@@ -1,4 +1,6 @@
+import 'package:clima_medium/screens/loading_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +11,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
       ),
+    );
+
+    return MaterialApp(
+      home: LoadingPage(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
     );
   }
 }
