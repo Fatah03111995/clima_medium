@@ -17,9 +17,9 @@ class _LoadingPage extends State<LoadingPage> {
   }
 
   void getDataLocation() async {
-    WeatherData data = await WeatherData.data;
+    WeatherData datas = await WeatherData.data;
     setState(() {
-      data = data;
+      data = datas;
     });
   }
 
@@ -46,6 +46,10 @@ class _LoadingPage extends State<LoadingPage> {
           ),
           Text(
             'lokasi : ${data.location} cuaca : ${data.weather}',
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            'temp : ${data.temp - 273} C humidity : ${data.humidity} %',
             textAlign: TextAlign.center,
           ),
         ],
