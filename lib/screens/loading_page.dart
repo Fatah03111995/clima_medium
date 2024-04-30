@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:clima_medium/services/location.dart';
-import 'package:clima_medium/utilities/util.dart';
+import 'package:clima_medium/services/weather.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -13,10 +9,7 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPage extends State<LoadingPage> {
-  late double? latitude = 0;
-  late double? longitude = 0;
-  late String weather = 'loading';
-  late String location = 'loading';
+  WeatherData data = WeatherData.initial;
   @override
   void initState() {
     super.initState();
@@ -24,18 +17,10 @@ class _LoadingPage extends State<LoadingPage> {
   }
 
   void getDataLocation() async {
-    Location position = await Location.getCurrentData();
+    WeatherData data = await WeatherData.data;
     setState(() {
-      latitude = position.latitude;
-      longitude = position.longitude;
+      data = data;
     });
-    http.Response data =
-        await http.get(apiWeatherCall(lat: latitude, lon: longitude));
-    setState(() {
-      location = jsonDecode(data.body)['name'];
-      weather = jsonDecode(data.body)['weather'][0]['main'];
-    });
-    print(data.body);
   }
 
   @override
@@ -53,17 +38,14 @@ class _LoadingPage extends State<LoadingPage> {
           FloatingActionButton(
             onPressed: () {
               setState(() {
+                data = WeatherData.initial;
                 getDataLocation();
               });
             },
             child: const Text('refresh'),
           ),
           Text(
-            'lat : $latitude, lon : $longitude',
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            'lokasi : $location cuaca : $weather',
+            'lokasi : ${data.location} cuaca : ${data.weather}',
             textAlign: TextAlign.center,
           ),
         ],
