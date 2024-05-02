@@ -1,12 +1,13 @@
 import 'package:clima_medium/services/location.dart';
 import 'package:clima_medium/services/networking.dart';
+import 'package:clima_medium/utilities/textstyle.dart';
 import 'package:clima_medium/utilities/util.dart';
 import 'package:flutter/material.dart';
 
 class WeatherData {
   final double temp;
   final int humidity;
-  final int pressure;
+  final double pressure;
   final String weather;
   final String weatherDesc;
   final String location;
@@ -30,7 +31,7 @@ class WeatherData {
         humidity: decodeData['main']['humidity'],
         location: decodeData['name'],
         temp: decodeData['main']['temp'],
-        pressure: decodeData['main']['pressure'],
+        pressure: decodeData['main']['pressure'] * 0.000987,
         weather: decodeData['weather'][0]['main'].toLowerCase(),
         weatherDesc: decodeData['weather'][0]['description'],
         seaLevel: decodeData['main']['sea_level']);
@@ -70,6 +71,19 @@ class WeatherData {
         return Icons.sunny;
       default:
         return Icons.thermostat;
+    }
+  }
+
+  static TextStyle getWeatherTxtStl(String weather) {
+    switch (weather) {
+      case 'clouds':
+        return TextStyles.valCloud;
+      case 'rain' || 'thunderstorm' || 'drizzle':
+        return TextStyles.valRain;
+      case 'sunny' || 'clear' || 'atmosphere':
+        return TextStyles.valSunny;
+      default:
+        return TextStyles.valDefault;
     }
   }
 }
