@@ -1,6 +1,5 @@
 import 'package:clima_medium/screens/city_page.dart';
-import 'package:clima_medium/screens/loading_page.dart';
-import 'package:clima_medium/screens/location_page.dart';
+import 'package:clima_medium/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +19,7 @@ class MainApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      home: LocationPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
     );
