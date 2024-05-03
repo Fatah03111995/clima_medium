@@ -1,8 +1,8 @@
 import 'package:clima_medium/components/box.dart';
 import 'package:clima_medium/components/box_icon.dart';
 import 'package:clima_medium/components/button_nav.dart';
+import 'package:clima_medium/screens/city_page.dart';
 import 'package:clima_medium/services/weather.dart';
-import 'package:clima_medium/utilities/buttonstyle.dart';
 import 'package:clima_medium/utilities/textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -92,7 +92,12 @@ class _HomePage extends State<HomePage> {
                       ),
                       ButtonNav(
                         icon: Icons.search,
-                        onPress: () => setState(() {}),
+                        onPress: () => setState(() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CityPage()));
+                        }),
                       ),
                     ],
                   ),
