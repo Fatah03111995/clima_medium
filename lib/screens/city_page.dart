@@ -14,7 +14,7 @@ class _CityPage extends State<CityPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/city_background.jpg'),
+            image: AssetImage('images/cityPageBc.jpg'),
             fit: BoxFit.cover,
           ),
         ),
