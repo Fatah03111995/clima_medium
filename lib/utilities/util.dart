@@ -5,6 +5,6 @@ String apiWeatherByPosition({double? lat = 0, double? lon = 0}) {
 }
 
 String apiWeatherByLocationName(
-    {required String cityName, String countryCode = 'id'}) {
+    {required String cityName, String? countryCode = 'id'}) {
   return '${constants.apiUrl}?q=$cityName,$countryCode&appid=${constants.apiKey}&units=metric';
 }

@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      home: const CityPage(),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
     );
