@@ -16,14 +16,25 @@ class _CityPage extends State<CityPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController city = TextEditingController();
   TextEditingController country = TextEditingController();
+  WeatherData? data;
+  bool isLoadDataDone = true;
 
   @override
   Widget build(BuildContext context) {
-    void sendData() async {
-      WeatherData data =
+    void getData() async {
+      isLoadDataDone = false;
+      WeatherData? datas =
           await WeatherData.dataByCity(city.value.text, country.value.text);
+      setState(() {
+        data = datas;
+        isLoadDataDone = true;
+      });
+    }
+
+    void sendData() {
+      getData();
+
       if (data != null) {
-        // ignore: use_build_context_synchronously
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -31,7 +42,8 @@ class _CityPage extends State<CityPage> {
                       dataWithPosition: data,
                     )));
       } else {
-        print('error');
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Data is not found, please re-check the input')));
       }
     }
 
@@ -117,12 +129,7 @@ class _CityPage extends State<CityPage> {
                             color: Colors.white,
                           ),
                           const SizedBox(width: 10),
-                          Text(
-                            'Get Weather',
-                            style: TextStyles.valDefault.copyWith(
-                              fontSize: 15,
-                            ),
-                          ),
+                          Text('Get Weather', style: TextStyles.button),
                         ],
                       ),
                     ),

@@ -13,7 +13,7 @@ class Location {
         await Geolocator.requestPermission();
       }
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.medium);
+          desiredAccuracy: LocationAccuracy.high);
       return Location(
           latitude: position.latitude, longitude: position.longitude);
     } catch (e) {

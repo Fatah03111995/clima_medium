@@ -24,8 +24,8 @@ class WeatherData {
     Location position = await Location.getCurrentData();
     Network networking = Network(
         apiWeatherByPosition(lat: position.latitude, lon: position.longitude));
-    Map decodeData = await networking.getRequest();
-
+    Map? decodeData = await networking.getRequest();
+    if (decodeData == null) return null;
     return WeatherData(
         humidity: decodeData['main']['humidity'],
         location: decodeData['name'],
@@ -39,8 +39,9 @@ class WeatherData {
   static Future dataByCity(String cityName, String? countryCode) async {
     Network networking = Network(
         apiWeatherByLocationName(cityName: cityName, countryCode: countryCode));
-    Map decodeData = await networking.getRequest();
+    Map? decodeData = await networking.getRequest();
 
+    if (decodeData == null) return null;
     return WeatherData(
         humidity: decodeData['main']['humidity'],
         location: decodeData['name'],
@@ -48,7 +49,7 @@ class WeatherData {
         pressure: decodeData['main']['pressure'] * 0.000987,
         weather: decodeData['weather'][0]['main'].toLowerCase(),
         weatherDesc: decodeData['weather'][0]['description'],
-        seaLevel: decodeData['main']['sea_level']);
+        seaLevel: decodeData['main']['sea_level'] ?? 0);
   }
 
   static String getWeatherIconMain(String weather) {

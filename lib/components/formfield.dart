@@ -19,21 +19,35 @@ class FormFieldTxt extends StatelessWidget {
       children: [
         Expanded(
           child: TextFormField(
+            style: TextStyles.formValue,
             decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.black.withOpacity(0.5),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
+                  borderSide: BorderSide(width: 3.0, color: Colors.black),
                 ),
+                errorBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  borderSide: BorderSide(width: 3.0, color: Colors.red),
+                ),
+                errorStyle: TextStyles.formError,
+                focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    borderSide: BorderSide(width: 3.0, color: Colors.blue)),
+                filled: true,
+                fillColor: Colors.black.withOpacity(0.5),
                 labelText: label,
-                labelStyle: TextStyles.valDefault,
+                labelStyle: TextStyles.formLabel,
                 hintText: hint,
-                hintStyle: TextStyles.valDefault,
+                hintStyle: TextStyles.formHint,
                 prefixIcon: Icon(
                   icon,
-                  size: 30,
+                  size: 25,
                   color: Colors.white,
                 ),
                 prefixIconConstraints: const BoxConstraints(minWidth: 50)),
