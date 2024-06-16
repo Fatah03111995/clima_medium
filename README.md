@@ -1,8 +1,8 @@
 # clima_medium
-Weather app. Simple app without state management. \n
-  - Interaction with API \n
-\n
-Feature
+Weather app. Simple app without state management: \br
+  - Interaction with API \br
+\br
+Feature :
   - Get data weather by your location
   - Get data weather by your input based on city name
 
